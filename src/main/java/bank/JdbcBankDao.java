@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository
+//@Repository  //most ne ez legyen hanem a JPAs
 public class JdbcBankDao implements BankDao {
 
     private JdbcTemplate jdbcTemplate;

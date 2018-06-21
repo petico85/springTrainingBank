@@ -1,7 +1,9 @@
 package bank;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.sql.SQLOutput;
@@ -21,6 +23,8 @@ public class BankService {
                                             //Springben ...
     private BankDao bankDao;
 
+    private JpaLogEntryDao logEntryDao;
+
     private ApplicationEventPublisher applicationEventPublisher;
 
     @PostConstruct
@@ -35,15 +39,29 @@ public class BankService {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
+    @Transactional
     public void addClient(String name){
         Client client = new Client(name);
         bankDao.addClient(client);
         if(applicationEventPublisher != null) {
             applicationEventPublisher.publishEvent(new ClientHasCreatedEvent(this, name));//eldobjuk az eventet.
         }
+
+        if(logEntryDao != null) {
+            logEntryDao.log("client has created: " + name );
+        }
+
+        if(name.trim().equals("")) {
+           throw new IllegalArgumentException("Name cannot be empty"); //ezt az elején kellene, de példa kedvéért
+        }
     }
 
     public List<Client> listClients() {
         return bankDao.listClients();
+    }
+
+    @Autowired
+    public void setLogEntryDao(JpaLogEntryDao logEntryDao) {
+        this.logEntryDao = logEntryDao;
     }
 }

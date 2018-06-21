@@ -1,10 +1,21 @@
 package bank;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "clients")
 public class Client {
 
-    private String name;
+    @Id //ezzzel megadjuk hogy a tábla id mezője az id változó legyen
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //ezzel mondjuk hogy az adatbázis generálja az értékét
     private Long id;
+    private String name;
     private long balance;
+
+    //JPA miatt
+    public  Client() {
+
+    }
 
     public Client(Long id, String name, long balance) {
         this.name = name;

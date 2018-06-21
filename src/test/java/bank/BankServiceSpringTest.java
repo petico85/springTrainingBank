@@ -21,6 +21,7 @@ import static junit.framework.TestCase.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Config.class)
 @Sql(statements = "delete from clients") //az @Sql antonáció minden teszteset előtt lefuttatja a megadott scriptet. Most épp kitisztítja az clientstáblát
+@Sql(statements = "delete from logs")
 public class BankServiceSpringTest {
 
     @Autowired
@@ -36,5 +37,10 @@ public class BankServiceSpringTest {
         assertEquals(Arrays.asList("John Doe", "Jane Doe", "Jack Doe"),
                 clients.stream().map(c -> c.getName()).collect(Collectors.toList())
         );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyName() {
+        bankService.addClient("    ");
     }
 }
