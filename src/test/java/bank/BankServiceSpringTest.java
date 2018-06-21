@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import static junit.framework.TestCase.assertEquals;
 * */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Config.class)
+@Sql(statements = "delete from clients") //az @Sql antonáció minden teszteset előtt lefuttatja a megadott scriptet. Most épp kitisztítja az clientstáblát
 public class BankServiceSpringTest {
 
     @Autowired

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Repository
+//@Repository  //kommentbe raktuk, így a spring nem ezt példányosítja
 public class InMemoryankDao implements BankDao {
 
     private List<Client> clients =
