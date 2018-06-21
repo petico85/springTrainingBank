@@ -1,9 +1,13 @@
 package bank;
 
+import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import javax.sql.DataSource;
 
 
 //itt megmondjuk neki hogy ezt a két osztályt szeretnénk majd bean-ként használni és az egymásra hivatkozás
@@ -12,7 +16,26 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class Config {
 
+
+    @Bean
+    public DataSource dataSource() {
+        return new DriverManagerDataSource("jdbc:mariadb://localhost/bank", "bank", "bank");
+    }
+
+    //flyway inditása
+    //a resources/db könyvtárban lévő V__ kezdetű sql fájlokat futtatja
+    //ez egy default config felülbírálható, de alapból van valami, nem kell mindenáron konfigolni
+    //schema_version táblát generálés abba logolja az sql futásokat
+    @Bean
+    public Flyway flyway() {
+        Flyway flyway = new Flyway();
+        flyway.setDataSource(dataSource());
+        flyway.migrate();
+        return flyway;
+    }
+
     //ezt kelhet használni ha thirdparty osztályokat használunk amiket nem tudunk stereotype antonációkat megadni
+    //most szükségtelen mert ezeket az ComponentScan egyébként is létrehozza az antonációik miatt
     // stereotype antonációk
     //  --@Service
     //  --@Repository
