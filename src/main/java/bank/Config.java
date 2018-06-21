@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 @ComponentScan
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
-//@EnableJpaRepositories //ez teszi lehetővé hogy a springdata megtalálja a jpa interface-einket
+@EnableJpaRepositories //ez teszi lehetővé hogy a springdata megtalálja a jpa interface-einket
 public class Config {
 
 

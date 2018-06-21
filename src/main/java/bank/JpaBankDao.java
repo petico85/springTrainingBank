@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-//@Repository //van még egyszerűbb út, most arra váltunk
+@Repository //van még egyszerűbb út, most arra váltunk
 public class JpaBankDao implements BankDao {
 
     @PersistenceContext //ezzel injektál egy entitymanagert - Ez field injection.Nem unit tesztelhető, de Dao-t nem is kell
@@ -39,7 +39,8 @@ public class JpaBankDao implements BankDao {
 
     @Override
     public List<Client> listClients() {
-        return em.createQuery("select c from Client c", Client.class).getResultList();
+        return em.createQuery("select c from Client c left join fetch c.addresses", Client.class).getResultList();
+        //elég a c osztály addresses attributumát is lekérni és már joinol is
         //file  --> Project structure --> + JPA --> kiválasztod a projectet és ok
         //sql lekérdezést készít az osztály szerkezete alapján és az eredményt is ennek megfelelően adja vissza
         //em.createNativeQuery() itt lehetne rendes sql-t adni, de az adatbázis függetlenség ugrik

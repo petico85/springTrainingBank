@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.sql.Array;
 import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -37,6 +39,13 @@ public class BankService {
     public BankService(BankDao bankDao, ApplicationEventPublisher applicationEventPublisher) {
         this.bankDao = bankDao;
         this.applicationEventPublisher = applicationEventPublisher;
+    }
+
+    @Transactional
+    public void addClient(String name, Address... addresses) {
+        Client client = new Client(name);
+        Arrays.stream(addresses).forEach(a -> client.addAddress(a));//hozzáadja az összes címet a klienshez
+        bankDao.addClient(client);
     }
 
     @Transactional

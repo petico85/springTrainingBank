@@ -43,4 +43,15 @@ public class BankServiceSpringTest {
     public void testEmptyName() {
         bankService.addClient("    ");
     }
+
+    @Test
+    public void saveWidthAddree() {
+        bankService.addClient("Gipsz Jakab", new Address("Budapest","Fő út 30")
+                , new Address("Csákvár","Vörösmarty utca 4")
+                , new Address("Pécs","Király utca 30"));
+
+        Client client = bankService.listClients().get(0);
+
+        System.out.println(client.getAddresses().get(0).getCity());
+    }
 }
