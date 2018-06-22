@@ -67,6 +67,11 @@ public class BankService {
         return bankDao.listClients();
     }
 
+    @Transactional
+    public void addClient(Client client) {
+        bankDao.addClient(client);
+    }
+
     @Autowired
     public void setLogEntryDao(JpaLogEntryDao logEntryDao) {
         this.logEntryDao = logEntryDao;
