@@ -1,4 +1,4 @@
-package bank;
+package bank.backend;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;

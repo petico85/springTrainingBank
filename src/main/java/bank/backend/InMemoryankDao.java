@@ -1,6 +1,4 @@
-package bank;
-
-import org.springframework.stereotype.Repository;
+package bank.backend;
 
 import java.util.ArrayList;
 import java.util.Collections;

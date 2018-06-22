@@ -1,4 +1,4 @@
-package bank;
+package bank.frontend;
 
 
 import javax.servlet.ServletException;

@@ -1,5 +1,8 @@
 package bank;
 
+import bank.backend.BankService;
+import bank.backend.Client;
+import bank.backend.Config;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

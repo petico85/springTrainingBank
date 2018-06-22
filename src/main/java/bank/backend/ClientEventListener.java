@@ -1,4 +1,4 @@
-package bank;
+package bank.backend;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,6 @@
-package bank;
+package bank.backend;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -39,7 +38,7 @@ public class JpaBankDao implements BankDao {
 
     @Override
     public List<Client> listClients() {
-        return em.createQuery("select c from Client c left join fetch c.addresses", Client.class).getResultList();
+        return em.createQuery("select distinct c from Client c left join fetch c.addresses", Client.class).getResultList();
         //elég a c osztály addresses attributumát is lekérni és már joinol is
         //file  --> Project structure --> + JPA --> kiválasztod a projectet és ok
         //sql lekérdezést készít az osztály szerkezete alapján és az eredményt is ennek megfelelően adja vissza

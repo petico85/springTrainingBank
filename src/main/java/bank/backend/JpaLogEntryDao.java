@@ -1,4 +1,4 @@
-package bank;
+package bank.backend;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;

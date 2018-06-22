@@ -1,4 +1,4 @@
-package bank;
+package bank.backend;
 
 import java.util.List;
 

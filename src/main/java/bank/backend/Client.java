@@ -1,4 +1,4 @@
-package bank;
+package bank.backend;
 
 import javax.persistence.*;
 import java.util.ArrayList;

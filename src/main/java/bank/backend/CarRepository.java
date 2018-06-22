@@ -1,4 +1,4 @@
-package bank;
+package bank.backend;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,5 +1,9 @@
 package bank;
 
+import bank.backend.BankDao;
+import bank.backend.BankService;
+import bank.backend.Client;
+import bank.backend.InMemoryankDao;
 import org.junit.Test;
 
 import java.util.Arrays;
