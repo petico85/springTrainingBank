@@ -1,6 +1,7 @@
 package bank.backend;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class Client {
     @Id //ezzzel megadjuk hogy a tábla id mezője az id változó legyen
     @GeneratedValue(strategy = GenerationType.IDENTITY) //ezzel mondjuk hogy az adatbázis generálja az értékét
     private Long id;
+
+    @NotEmpty //validation: nem lehet üres string vagy null
     private String name;
     private long balance;
 

@@ -7,7 +7,7 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="Entities" value="3abf9c84-fcb4-41f7-8bc7-219a0eaf5591" />
-          <factory-entry name="entityManagerFactory" />
+          <factory-entry name="entityManagerFactory" value="3abf9c84-fcb4-41f7-8bc7-219a0eaf5591" />
         </datasource-mapping>
       </configuration>
     </facet>

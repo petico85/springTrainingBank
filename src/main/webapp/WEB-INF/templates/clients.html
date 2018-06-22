@@ -6,7 +6,12 @@
 </head>
 <body>
 
-<form th:action="@{/}" th:object="${clientForm}" method="post"> <!-- jelzi hogy ez a clientForm modell a clientscontrollerből-->
+<span th:text="${message}">Message...</span>
+
+<form th:action="@{/}" th:object="${client}" method="post"> <!-- jelzi hogy ez a clientForm modell a clientscontrollerből-->
+
+    <span th:errors="*{*}">Error messages</span> <!-- kiírja amit a validátor hibaüzenetnek visszadob. a *{*} minden fajta hibát tud -->
+
     <input th:field="*{name}" />
     <input th:field="*{balance}" />
     <button type="submit"> Create client </button>
