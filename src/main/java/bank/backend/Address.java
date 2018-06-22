@@ -1,7 +1,10 @@
 package bank.backend;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "addresses")
@@ -16,6 +19,7 @@ public class Address {
     private String line1;
 
     @ManyToOne //ebből tudja a springdata hogy össze van kötve és hogy hogy. a client osztályban is meg kell adni
+    @JsonIgnore //ezt nem rakja majd a json-be
     private Client client;
 
     public Address() {
